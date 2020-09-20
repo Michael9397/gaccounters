@@ -1,0 +1,43 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'vue-select/dist/vue-select.css';
+
+@layer base {
+    .nav-shadow {
+        background: linear-gradient(.65turn, rgba(30, 54, 86), rgb(229, 231, 235),  rgb(229, 231, 235), rgba(30, 54, 86));
+        height: 2rem;
+        width: 100%;
+        margin: auto;
+    }
+
+    .bg-blue-800-lightened {
+        background-color: rgba(44, 82, 130, .8);
+    }
+    .red-shadow {
+        box-shadow:0 20px 25px -5px rgba(255, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+}
+@layer components {
+    .btn {
+        @apply font-bold py-2 px-4 rounded;
+    }
+    .btn-blue {
+        @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+    }
+    .btn-blue:hover {
+        @apply bg-blue-700;
+    }
+    .form-input {
+        @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight ;
+    }
+    .form-input :focus {
+        @apply outline-none shadow-outline;
+    }
+    .form-label {
+        @apply block text-sm font-bold mb-2;
+    }
+}
+.vs__dropdown-toggle {
+    border: none !important;
+}
