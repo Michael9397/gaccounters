@@ -5995,7 +5995,7 @@ __webpack_require__.r(__webpack_exports__);
         resetOnSuccess: false,
         preserveScroll: true
       }),
-      battleTitle: this.battle_title ? this.battle_title : 'Last 10 Battles',
+      battleTitle: this.battle_title ? this.battle_title : 'Last 10 Battles Added',
       position_type: 'defense',
       selected_character: null,
       battle_type: '5v5',

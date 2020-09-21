@@ -84,6 +84,9 @@
     <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-blue-900 bg-gray-200">
         <h2 class="font-semibold text-2xl leading-tight text-center py-6">Conquer Grand Arena/TW by Finding the best counter teams!</h2>
         <h3 class="text-xl text-center pb-6">Search what works and didn't from your favorite content creators!</h3>
+        <div class="py-6 m-auto w-full flex justify-center">
+            <a class="btn btn-blue px-10 py-6 text-2xl" href="/search">START SEARCHING NOW!</a>
+        </div>
         <div class="current stats">
             <div class="sm:px-6 lg:px-8">
                 <div class="red-shadow">
