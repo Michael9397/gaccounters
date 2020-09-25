@@ -69,7 +69,7 @@
                     <div class="border border-gray-200 px-4 py-2" v-html="getOffense(battle)"></div>
                     <div class="border border-gray-200 px-4 py-2" v-html="getDefense(battle)"></div>
                     <div class="border border-gray-200 px-4 py-2" >
-                        <a :href="getVideoUrl(battle)">Link</a> @ {{ battle.video_timestamp }}<br>
+                        <a :href="addTimeToVideo(battle)" target="_blank">Link</a> @ {{ battle.video_timestamp }}<br>
                         By: {{ getCreator(battle) }}
                     </div>
                     <div class="border border-gray-200 px-4 py-2" style="overflow:auto;">{{ battle.notes }}</div>
@@ -83,7 +83,7 @@
     import AppLayout from './../Layouts/AppLayout';
     import {fuzzySearchWithNicknames} from "../Helpers/fuzzysearch";
     import {getOffense, getDefense} from "../Helpers/getTeams";
-    import {keyById, getVideoUrl, getCreator} from "../Helpers/general"
+    import {keyById, getCreator, addTimeToVideo} from "../Helpers/general"
 
     export default {
         props: ['admin_links', 'errors', 'characters', 'battles', 'creators', 'videos', 'battle_title'],
@@ -108,7 +108,7 @@
                 creatorsKeyed: keyById(this.creators),
                 charactersKeyed: keyById(this.characters),
                 videosKeyed: keyById(this.videos),
-                fuzzySearchWithNicknames, getOffense, getDefense, getVideoUrl, getCreator,
+                fuzzySearchWithNicknames, getOffense, getDefense, getCreator, addTimeToVideo,
             };
         },
         methods: {

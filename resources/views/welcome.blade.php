@@ -87,6 +87,12 @@
         <div class="py-6 m-auto w-full flex justify-center">
             <a class="btn btn-blue px-10 py-6 mb-12 text-2xl bg-blue-800 hover:bg-blue-850" href="/search">START SEARCHING NOW!</a>
         </div>
+        <div class="max-w-7xl pb-6 px-4 sm:px-6 lg:px-8 m-auto w-full">
+            <h3 class="text-2xl">Recently Added Features</h3>
+            <ul class="text-lg pt-2 pl-8">
+                <li>Search results video link now goes to the time on the video (9/24)</li>
+            </ul>
+        </div>
         <div class="current stats">
             <div class="sm:px-6 lg:px-8">
                 <div class="red-shadow">

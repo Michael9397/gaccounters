@@ -3686,8 +3686,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       fuzzySearchWithNicknames: _Helpers_fuzzysearch__WEBPACK_IMPORTED_MODULE_3__["fuzzySearchWithNicknames"],
       getBattleSoftReset: _Helpers_battle_set__WEBPACK_IMPORTED_MODULE_6__["getBattleSoftReset"],
       getBattleSet: _Helpers_battle_set__WEBPACK_IMPORTED_MODULE_6__["getBattleSet"],
-      getVideoUrl: _Helpers_general__WEBPACK_IMPORTED_MODULE_4__["getVideoUrl"],
       getCreator: _Helpers_general__WEBPACK_IMPORTED_MODULE_4__["getCreator"],
+      addTimeToVideo: _Helpers_general__WEBPACK_IMPORTED_MODULE_4__["addTimeToVideo"],
       getOffense: _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_7__["getOffense"],
       getDefense: _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_7__["getDefense"],
       slots: _Helpers_slots__WEBPACK_IMPORTED_MODULE_5__["slots"],
@@ -6005,8 +6005,8 @@ __webpack_require__.r(__webpack_exports__);
       fuzzySearchWithNicknames: _Helpers_fuzzysearch__WEBPACK_IMPORTED_MODULE_1__["fuzzySearchWithNicknames"],
       getOffense: _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_2__["getOffense"],
       getDefense: _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_2__["getDefense"],
-      getVideoUrl: _Helpers_general__WEBPACK_IMPORTED_MODULE_3__["getVideoUrl"],
-      getCreator: _Helpers_general__WEBPACK_IMPORTED_MODULE_3__["getCreator"]
+      getCreator: _Helpers_general__WEBPACK_IMPORTED_MODULE_3__["getCreator"],
+      addTimeToVideo: _Helpers_general__WEBPACK_IMPORTED_MODULE_3__["addTimeToVideo"]
     };
   },
   methods: {
@@ -30286,7 +30286,7 @@ var render = function() {
                     "div",
                     { staticClass: "border border-gray-200 px-4 py-2" },
                     [
-                      _c("a", { attrs: { href: _vm.getVideoUrl(battle) } }, [
+                      _c("a", { attrs: { href: _vm.addTimeToVideo(battle) } }, [
                         _vm._v("Link")
                       ]),
                       _vm._v(" @ " + _vm._s(battle.video_timestamp)),
@@ -33856,9 +33856,16 @@ var render = function() {
                     "div",
                     { staticClass: "border border-gray-200 px-4 py-2" },
                     [
-                      _c("a", { attrs: { href: _vm.getVideoUrl(battle) } }, [
-                        _vm._v("Link")
-                      ]),
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: _vm.addTimeToVideo(battle),
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v("Link")]
+                      ),
                       _vm._v(" @ " + _vm._s(battle.video_timestamp)),
                       _c("br"),
                       _vm._v(
@@ -46192,7 +46199,7 @@ function fuzzySearch(options, searchTerm) {
 /*!*****************************************!*\
   !*** ./resources/js/Helpers/general.js ***!
   \*****************************************/
-/*! exports provided: showDate, keyById, getVideoUrl, getCreator */
+/*! exports provided: showDate, keyById, getVideoUrl, getCreator, addTimeToVideo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46201,6 +46208,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "keyById", function() { return keyById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getVideoUrl", function() { return getVideoUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCreator", function() { return getCreator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTimeToVideo", function() { return addTimeToVideo; });
 function showDate(date) {
   if (!date) return '';
   var parts = date.split('-');
@@ -46220,6 +46228,20 @@ function getVideoUrl(battle) {
 function getCreator(battle) {
   var creatorId = this.videosKeyed[battle.video_id].creator_id;
   return this.creatorsKeyed[creatorId].name;
+}
+function addTimeToVideo(battle) {
+  var url = this.videosKeyed[battle.video_id].url;
+  if (!url.includes('youtube')) return url;
+  var sections = battle.video_timestamp.split(':');
+  var multiplier = sections.length == 3 ? [3600, 60, 1] : [60, 1];
+  var seconds = 0;
+
+  for (var i in sections) {
+    seconds += Number(sections[i]) * multiplier[i];
+  }
+
+  var strpos = url.indexOf('?') + 1;
+  return "".concat(url.slice(0, strpos), "start=").concat(seconds, "&").concat(url.slice(strpos));
 }
 
 /***/ }),

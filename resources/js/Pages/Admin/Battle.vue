@@ -333,7 +333,7 @@
                     <div class="border border-gray-200 px-4 py-2" v-html="getOffense(battle)"></div>
                     <div class="border border-gray-200 px-4 py-2" v-html="getDefense(battle)"></div>
                     <div class="border border-gray-200 px-4 py-2" >
-                        <a :href="getVideoUrl(battle)">Link</a> @ {{ battle.video_timestamp }}<br>
+                        <a :href="addTimeToVideo(battle)">Link</a> @ {{ battle.video_timestamp }}<br>
                         By: {{ getCreator(battle) }}
                     </div>
                     <div class="border border-gray-200 px-4 py-2">{{ battle.notes }}</div>
@@ -369,7 +369,7 @@ import AppLayout from "../../Layouts/AppLayout"
 import JetActionMessage from "../../Jetstream/ActionMessage"
 import JetDialogModal from "../../Jetstream/DialogModal"
 import {fuzzySearch, fuzzySearchWithNicknames } from "../../Helpers/fuzzysearch"
-import {getCreator, getVideoUrl, keyById} from "../../Helpers/general"
+import {getCreator, keyById, addTimeToVideo} from "../../Helpers/general"
 import { slots } from "../../Helpers/slots"
 import {getBattleSet, getBattleSoftReset} from "../../Helpers/battle_set"
 import {getOffense, getDefense} from "../../Helpers/getTeams"
@@ -408,7 +408,7 @@ export default {
             creatorsKeyed: keyById(this.creators),
             fuzzySearch, fuzzySearchWithNicknames,
             getBattleSoftReset, getBattleSet,
-            getVideoUrl, getCreator,
+            getCreator, addTimeToVideo,
             getOffense, getDefense, slots,
             videoWithLabels: this.labelVideos(),
             videosKeyed: keyById(this.videos),
