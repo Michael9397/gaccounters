@@ -6,7 +6,7 @@
                 <div class="form-body">
                     <div class="mb-4">
                         <label for="battle-type">Battle Type</label>
-                        <select v-model="battle_type" id="battle-type" class="form-input">
+                        <select v-model="battle_type" id="battle-type" class="form-input" @change="filterBattles">
                             <option value="any">any</option>
                             <option value="5v5">5v5</option>
                             <option value="3v3">3v3</option>
@@ -26,13 +26,14 @@
                                 :options="filteredCharacters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
+                                @input="filterBattles"
                             ></v-select>
                         </div>
                     </div>
                     <div id="position-type-div">
                         <div class="w-full">
                             <label for="battle-type">Offense/Defense</label>
-                            <select v-model="position_type" id="position-type" class="form-input">
+                            <select v-model="position_type" id="position-type" class="form-input" @change="filterBattles">
                                 <option value="defense">Defense</option>
                                 <option value="offense">Offense</option>
                                 <option value="both">Both</option>
@@ -77,8 +78,8 @@
 import AppLayout from './../Layouts/AppLayout';
 import {fuzzySearchWithNicknames} from "../Helpers/fuzzysearch";
 import {getOffense, getDefense} from "../Helpers/getTeams";
-import {keyById, getVideoUrl} from "../Helpers/general"
-
+import {keyById, getVideoUrl, battleContainsCharacter} from "../Helpers/general"
+import {slots} from "../Helpers/slots"
 
 export default {
     components: {AppLayout},
@@ -89,21 +90,36 @@ export default {
             battle_type: 'any',
             position_type: 'defense',
             selected_character: null,
+            filteredBattles: this.battles,
             charactersKeyed: keyById(this.characters),
             videosKeyed: keyById(this.videos),
             getOffense, getDefense, getVideoUrl,
-            fuzzySearchWithNicknames,
+            fuzzySearchWithNicknames, slots,
         }
     },
-    computed: {
-        filteredBattles() {
+    methods: {
+        filterBattles() {
             let filteredBattles = this.battles;
-            if (this.battle_type != 'any') {
+            if (this.battle_type !== 'any') {
                 filteredBattles = filteredBattles.filter(battle => battle.battle_type == this.battle_type);
             }
-
-            return filteredBattles;
+            if (this.selected_character) {
+                let spots = this.position_type == 'both'? [...slots.offense, ...slots.defense] : slots[this.position_type];
+                filteredBattles = filteredBattles.filter(battle => {
+                    let found = false;
+                    for (let spot of spots) {
+                        if (battle[spot] == this.selected_character) {
+                            return true;
+                        }
+                    }
+                    return found;
+                });
+            }
+            this.filteredBattles = filteredBattles;
         },
+    },
+    computed: {
+
         filteredCharacters() {
             if (this.battle_type == 'training') {
                 return this.characters;

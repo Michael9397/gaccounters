@@ -90,6 +90,7 @@
         <div class="max-w-7xl pb-6 px-4 sm:px-6 lg:px-8 m-auto w-full">
             <h3 class="text-2xl">Recently Added Features</h3>
             <ul class="text-lg pt-2 pl-8">
+                <li>Fixed search on content creator videos (10/4)</li>
                 <li>Search results video link now goes to the time on the video (9/24)</li>
             </ul>
         </div>

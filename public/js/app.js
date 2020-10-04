@@ -4741,6 +4741,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Helpers_fuzzysearch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Helpers/fuzzysearch */ "./resources/js/Helpers/fuzzysearch.js");
 /* harmony import */ var _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Helpers/getTeams */ "./resources/js/Helpers/getTeams.js");
 /* harmony import */ var _Helpers_general__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/general */ "./resources/js/Helpers/general.js");
+/* harmony import */ var _Helpers_slots__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Helpers/slots */ "./resources/js/Helpers/slots.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -4816,6 +4831,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -4831,28 +4848,58 @@ __webpack_require__.r(__webpack_exports__);
       battle_type: 'any',
       position_type: 'defense',
       selected_character: null,
+      filteredBattles: this.battles,
       charactersKeyed: Object(_Helpers_general__WEBPACK_IMPORTED_MODULE_3__["keyById"])(this.characters),
       videosKeyed: Object(_Helpers_general__WEBPACK_IMPORTED_MODULE_3__["keyById"])(this.videos),
       getOffense: _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_2__["getOffense"],
       getDefense: _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_2__["getDefense"],
       getVideoUrl: _Helpers_general__WEBPACK_IMPORTED_MODULE_3__["getVideoUrl"],
-      fuzzySearchWithNicknames: _Helpers_fuzzysearch__WEBPACK_IMPORTED_MODULE_1__["fuzzySearchWithNicknames"]
+      fuzzySearchWithNicknames: _Helpers_fuzzysearch__WEBPACK_IMPORTED_MODULE_1__["fuzzySearchWithNicknames"],
+      slots: _Helpers_slots__WEBPACK_IMPORTED_MODULE_4__["slots"]
     };
   },
-  computed: {
-    filteredBattles: function filteredBattles() {
+  methods: {
+    filterBattles: function filterBattles() {
       var _this = this;
 
       var filteredBattles = this.battles;
 
-      if (this.battle_type != 'any') {
+      if (this.battle_type !== 'any') {
         filteredBattles = filteredBattles.filter(function (battle) {
           return battle.battle_type == _this.battle_type;
         });
       }
 
-      return filteredBattles;
-    },
+      if (this.selected_character) {
+        var spots = this.position_type == 'both' ? [].concat(_toConsumableArray(_Helpers_slots__WEBPACK_IMPORTED_MODULE_4__["slots"].offense), _toConsumableArray(_Helpers_slots__WEBPACK_IMPORTED_MODULE_4__["slots"].defense)) : _Helpers_slots__WEBPACK_IMPORTED_MODULE_4__["slots"][this.position_type];
+        filteredBattles = filteredBattles.filter(function (battle) {
+          var found = false;
+
+          var _iterator = _createForOfIteratorHelper(spots),
+              _step;
+
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var spot = _step.value;
+
+              if (battle[spot] == _this.selected_character) {
+                return true;
+              }
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
+
+          return found;
+        });
+      }
+
+      this.filteredBattles = filteredBattles;
+    }
+  },
+  computed: {
     filteredCharacters: function filteredCharacters() {
       if (this.battle_type == 'training') {
         return this.characters;
@@ -31725,19 +31772,22 @@ var render = function() {
                   staticClass: "form-input",
                   attrs: { id: "battle-type" },
                   on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.battle_type = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.battle_type = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.filterBattles
+                    ]
                   }
                 },
                 [
@@ -31779,6 +31829,7 @@ var render = function() {
                       options: _vm.filteredCharacters,
                       filter: _vm.fuzzySearchWithNicknames
                     },
+                    on: { input: _vm.filterBattles },
                     model: {
                       value: _vm.selected_character,
                       callback: function($$v) {
@@ -31812,19 +31863,22 @@ var render = function() {
                     staticClass: "form-input",
                     attrs: { id: "position-type" },
                     on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.position_type = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.position_type = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        _vm.filterBattles
+                      ]
                     }
                   },
                   [
