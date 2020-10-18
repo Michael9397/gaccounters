@@ -40,7 +40,7 @@
                                 v-model="offense_character"
                                 label="name"
                                 :reduce="char => char.id"
-                                :options="filteredLeaderCharacters"
+                                :options="filteredCharacters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
                             ></v-select>
@@ -55,7 +55,7 @@
                                 v-model="offense_excludes"
                                 label="name"
                                 :reduce="char => char.id"
-                                :options="filteredLeaderCharacters"
+                                :options="filteredCharacters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
                             ></v-select>
@@ -87,7 +87,7 @@
                                 v-model="defense_character"
                                 label="name"
                                 :reduce="char => char.id"
-                                :options="filteredLeaderCharacters"
+                                :options="filteredCharacters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
                             ></v-select>
@@ -102,7 +102,7 @@
                                 v-model="defense_excludes"
                                 label="name"
                                 :reduce="char => char.id"
-                                :options="filteredLeaderCharacters"
+                                :options="filteredCharacters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
                             ></v-select>

@@ -34469,7 +34469,7 @@ var render = function() {
                       reduce: function(char) {
                         return char.id
                       },
-                      options: _vm.filteredLeaderCharacters,
+                      options: _vm.filteredCharacters,
                       filter: _vm.fuzzySearchWithNicknames
                     },
                     model: {
@@ -34511,7 +34511,7 @@ var render = function() {
                       reduce: function(char) {
                         return char.id
                       },
-                      options: _vm.filteredLeaderCharacters,
+                      options: _vm.filteredCharacters,
                       filter: _vm.fuzzySearchWithNicknames
                     },
                     model: {
@@ -34601,7 +34601,7 @@ var render = function() {
                       reduce: function(char) {
                         return char.id
                       },
-                      options: _vm.filteredLeaderCharacters,
+                      options: _vm.filteredCharacters,
                       filter: _vm.fuzzySearchWithNicknames
                     },
                     model: {
@@ -34643,7 +34643,7 @@ var render = function() {
                       reduce: function(char) {
                         return char.id
                       },
-                      options: _vm.filteredLeaderCharacters,
+                      options: _vm.filteredCharacters,
                       filter: _vm.fuzzySearchWithNicknames
                     },
                     model: {
