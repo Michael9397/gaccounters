@@ -6026,6 +6026,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -6128,6 +6129,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Helpers_fuzzysearch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Helpers/fuzzysearch */ "./resources/js/Helpers/fuzzysearch.js");
 /* harmony import */ var _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Helpers/getTeams */ "./resources/js/Helpers/getTeams.js");
 /* harmony import */ var _Helpers_general__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/general */ "./resources/js/Helpers/general.js");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -34076,7 +34083,8 @@ var render = function() {
                         return char.id
                       },
                       options: _vm.filteredLeaderCharacters,
-                      filter: _vm.fuzzySearchWithNicknames
+                      filter: _vm.fuzzySearchWithNicknames,
+                      selectOnTab: true
                     },
                     model: {
                       value: _vm.selected_character,
@@ -34428,7 +34436,8 @@ var render = function() {
                         return char.id
                       },
                       options: _vm.filteredLeaderCharacters,
-                      filter: _vm.fuzzySearchWithNicknames
+                      filter: _vm.fuzzySearchWithNicknames,
+                      selectOnTab: true
                     },
                     model: {
                       value: _vm.offense_leader_character,
@@ -34470,7 +34479,8 @@ var render = function() {
                         return char.id
                       },
                       options: _vm.filteredCharacters,
-                      filter: _vm.fuzzySearchWithNicknames
+                      filter: _vm.fuzzySearchWithNicknames,
+                      selectOnTab: true
                     },
                     model: {
                       value: _vm.offense_character,
@@ -34512,7 +34522,8 @@ var render = function() {
                         return char.id
                       },
                       options: _vm.filteredCharacters,
-                      filter: _vm.fuzzySearchWithNicknames
+                      filter: _vm.fuzzySearchWithNicknames,
+                      selectOnTab: true
                     },
                     model: {
                       value: _vm.offense_excludes,
@@ -34560,7 +34571,8 @@ var render = function() {
                         return char.id
                       },
                       options: _vm.filteredLeaderCharacters,
-                      filter: _vm.fuzzySearchWithNicknames
+                      filter: _vm.fuzzySearchWithNicknames,
+                      selectOnTab: true
                     },
                     model: {
                       value: _vm.defense_leader_character,
@@ -34602,7 +34614,8 @@ var render = function() {
                         return char.id
                       },
                       options: _vm.filteredCharacters,
-                      filter: _vm.fuzzySearchWithNicknames
+                      filter: _vm.fuzzySearchWithNicknames,
+                      selectOnTab: true
                     },
                     model: {
                       value: _vm.defense_character,
@@ -34644,7 +34657,8 @@ var render = function() {
                         return char.id
                       },
                       options: _vm.filteredCharacters,
-                      filter: _vm.fuzzySearchWithNicknames
+                      filter: _vm.fuzzySearchWithNicknames,
+                      selectOnTab: true
                     },
                     model: {
                       value: _vm.defense_excludes,

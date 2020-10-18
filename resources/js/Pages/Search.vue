@@ -28,6 +28,7 @@
                                 :options="filteredLeaderCharacters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
+                                :selectOnTab="true"
                             ></v-select>
                             <span v-if="errors.selected_character" class="error">{{ errors.selected_character[0] }}</span>
                         </div>
