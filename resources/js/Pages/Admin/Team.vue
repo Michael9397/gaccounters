@@ -35,6 +35,7 @@
                                 :options="characters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
+                                :selectOnTab="true"
                             ></v-select>
                             <span class="form-error text-red-600" v-if="errors.leader">{{ errors.leader }}</span>
                         </div>
@@ -49,6 +50,7 @@
                                 :options="characters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
+                                :selectOnTab="true"
                             ></v-select>
                             <span class="form-error text-red-600" v-if="errors.slot_2">{{ errors.slot_2 }}</span>
                         </div>
@@ -63,6 +65,7 @@
                                 :options="characters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
+                                :selectOnTab="true"
                             ></v-select>
                             <span class="form-error text-red-600" v-if="errors.slot_3">{{ errors.slot_3 }}</span>
                         </div>
@@ -77,6 +80,7 @@
                                 :options="characters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
+                                :selectOnTab="true"
                             ></v-select>
                             <span class="form-error text-red-600" v-if="errors.slot_4">{{ errors.slot_4 }}</span>
                         </div>
@@ -91,6 +95,7 @@
                                 :options="characters"
                                 :filter="fuzzySearchWithNicknames"
                                 style="background:white;"
+                                :selectOnTab="true"
                             ></v-select>
                             <span class="form-error text-red-600" v-if="errors.slot_5">{{ errors.slot_5 }}</span>
                         </div>

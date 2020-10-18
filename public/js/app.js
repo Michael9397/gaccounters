@@ -3638,6 +3638,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4333,6 +4352,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -4521,6 +4545,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
 /* harmony import */ var _Helpers_fuzzysearch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Helpers/fuzzysearch */ "./resources/js/Helpers/fuzzysearch.js");
 /* harmony import */ var _Helpers_general__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Helpers/general */ "./resources/js/Helpers/general.js");
+//
 //
 //
 //
@@ -29682,7 +29707,8 @@ var render = function() {
                             return videos.id
                           },
                           options: _vm.videoWithLabels,
-                          filter: _vm.fuzzySearch
+                          filter: _vm.fuzzySearch,
+                          selectOnTab: true
                         },
                         model: {
                           value: _vm.form.video_id,
@@ -29723,7 +29749,8 @@ var render = function() {
                               id: "offense_teams",
                               label: "name",
                               options: _vm.filteredTeams,
-                              filter: _vm.fuzzySearch
+                              filter: _vm.fuzzySearch,
+                              selectOnTab: true
                             },
                             model: {
                               value: _vm.offense_team,
@@ -29755,7 +29782,8 @@ var render = function() {
                                 return characters.id
                               },
                               options: _vm.filteredLeaderCharacters,
-                              filter: _vm.fuzzySearchWithNicknames
+                              filter: _vm.fuzzySearchWithNicknames,
+                              selectOnTab: true
                             },
                             model: {
                               value: _vm.form.offense_leader,
@@ -29795,7 +29823,8 @@ var render = function() {
                                 return characters.id
                               },
                               options: _vm.filteredCharacters,
-                              filter: _vm.fuzzySearchWithNicknames
+                              filter: _vm.fuzzySearchWithNicknames,
+                              selectOnTab: true
                             },
                             model: {
                               value: _vm.form.offense_slot_2,
@@ -29835,7 +29864,8 @@ var render = function() {
                                 return characters.id
                               },
                               options: _vm.filteredCharacters,
-                              filter: _vm.fuzzySearchWithNicknames
+                              filter: _vm.fuzzySearchWithNicknames,
+                              selectOnTab: true
                             },
                             model: {
                               value: _vm.form.offense_slot_3,
@@ -29878,7 +29908,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.offense_slot_4,
@@ -29922,7 +29953,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.offense_slot_5,
@@ -29966,7 +29998,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.offense_slot_6,
@@ -30010,7 +30043,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.offense_slot_7,
@@ -30054,7 +30088,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.offense_slot_8,
@@ -30096,7 +30131,8 @@ var render = function() {
                               id: "defense_team",
                               label: "name",
                               options: _vm.filteredTeams,
-                              filter: _vm.fuzzySearch
+                              filter: _vm.fuzzySearch,
+                              selectOnTab: true
                             },
                             model: {
                               value: _vm.defense_team,
@@ -30128,7 +30164,8 @@ var render = function() {
                                 return characters.id
                               },
                               options: _vm.filteredLeaderCharacters,
-                              filter: _vm.fuzzySearchWithNicknames
+                              filter: _vm.fuzzySearchWithNicknames,
+                              selectOnTab: true
                             },
                             model: {
                               value: _vm.form.defense_leader,
@@ -30168,7 +30205,8 @@ var render = function() {
                                 return characters.id
                               },
                               options: _vm.filteredCharacters,
-                              filter: _vm.fuzzySearchWithNicknames
+                              filter: _vm.fuzzySearchWithNicknames,
+                              selectOnTab: true
                             },
                             model: {
                               value: _vm.form.defense_slot_2,
@@ -30208,7 +30246,8 @@ var render = function() {
                                 return characters.id
                               },
                               options: _vm.filteredCharacters,
-                              filter: _vm.fuzzySearchWithNicknames
+                              filter: _vm.fuzzySearchWithNicknames,
+                              selectOnTab: true
                             },
                             model: {
                               value: _vm.form.defense_slot_3,
@@ -30251,7 +30290,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.defense_slot_4,
@@ -30295,7 +30335,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.defense_slot_5,
@@ -30339,7 +30380,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.defense_slot_6,
@@ -30383,7 +30425,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.defense_slot_7,
@@ -30427,7 +30470,8 @@ var render = function() {
                                     return characters.id
                                   },
                                   options: _vm.filteredCharacters,
-                                  filter: _vm.fuzzySearchWithNicknames
+                                  filter: _vm.fuzzySearchWithNicknames,
+                                  selectOnTab: true
                                 },
                                 model: {
                                   value: _vm.form.defense_slot_8,
@@ -31363,7 +31407,8 @@ var render = function() {
                             return characters.id
                           },
                           options: _vm.characters,
-                          filter: _vm.fuzzySearchWithNicknames
+                          filter: _vm.fuzzySearchWithNicknames,
+                          selectOnTab: true
                         },
                         model: {
                           value: _vm.leader,
@@ -31403,7 +31448,8 @@ var render = function() {
                             return characters.id
                           },
                           options: _vm.characters,
-                          filter: _vm.fuzzySearchWithNicknames
+                          filter: _vm.fuzzySearchWithNicknames,
+                          selectOnTab: true
                         },
                         model: {
                           value: _vm.slot_2,
@@ -31443,7 +31489,8 @@ var render = function() {
                             return characters.id
                           },
                           options: _vm.characters,
-                          filter: _vm.fuzzySearchWithNicknames
+                          filter: _vm.fuzzySearchWithNicknames,
+                          selectOnTab: true
                         },
                         model: {
                           value: _vm.slot_3,
@@ -31483,7 +31530,8 @@ var render = function() {
                             return characters.id
                           },
                           options: _vm.characters,
-                          filter: _vm.fuzzySearchWithNicknames
+                          filter: _vm.fuzzySearchWithNicknames,
+                          selectOnTab: true
                         },
                         model: {
                           value: _vm.slot_4,
@@ -31523,7 +31571,8 @@ var render = function() {
                             return characters.id
                           },
                           options: _vm.characters,
-                          filter: _vm.fuzzySearchWithNicknames
+                          filter: _vm.fuzzySearchWithNicknames,
+                          selectOnTab: true
                         },
                         model: {
                           value: _vm.slot_5,
@@ -31775,7 +31824,8 @@ var render = function() {
                             return creators.id
                           },
                           options: _vm.creators,
-                          filter: _vm.fuzzySearch
+                          filter: _vm.fuzzySearch,
+                          selectOnTab: true
                         },
                         model: {
                           value: _vm.form.creator_id,

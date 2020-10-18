@@ -30,6 +30,7 @@
                                 :options="videoWithLabels"
                                 :filter="fuzzySearch"
                                 style="background:white;"
+                                :selectOnTab="true"
                             ></v-select>
                             <span class="form-error text-red-600" v-if="errors.video">{{ errors.video }}</span>
                         </div>
@@ -47,6 +48,7 @@
                                         :options="filteredTeams"
                                         :filter="fuzzySearch"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                 </div>
                                 <div class="mb-4">
@@ -60,6 +62,7 @@
                                         :options="filteredLeaderCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.leader">{{ errors.leader }}</span>
                                 </div>
@@ -74,6 +77,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.offense_slot_2">{{ errors.offense_slot_2 }}</span>
                                 </div>
@@ -88,6 +92,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.offense_slot_3">{{ errors.offense_slot_3 }}</span>
                                 </div>
@@ -102,6 +107,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.offense_slot_4">{{ errors.offense_slot_4 }}</span>
                                 </div>
@@ -116,6 +122,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.offense_slot_5">{{ errors.offense_slot_5 }}</span>
                                 </div>
@@ -130,6 +137,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.offense_slot_6">{{ errors.offense_slot_6 }}</span>
                                 </div>
@@ -144,6 +152,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.offense_slot_7">{{ errors.offense_slot_7 }}</span>
                                 </div>
@@ -158,6 +167,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.offense_slot_8">{{ errors.offense_slot_8 }}</span>
                                 </div>
@@ -174,6 +184,7 @@
                                         :options="filteredTeams"
                                         :filter="fuzzySearch"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                 </div>
                                 <div class="mb-4">
@@ -187,6 +198,7 @@
                                         :options="filteredLeaderCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.leader">{{ errors.leader }}</span>
                                 </div>
@@ -201,6 +213,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.defense_slot_2">{{ errors.defense_slot_2 }}</span>
                                 </div>
@@ -215,6 +228,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.defense_slot_3">{{ errors.defense_slot_3 }}</span>
                                 </div>
@@ -229,6 +243,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.defense_slot_4">{{ errors.defense_slot_4 }}</span>
                                 </div>
@@ -243,6 +258,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.defense_slot_5">{{ errors.defense_slot_5 }}</span>
                                 </div>
@@ -257,6 +273,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.defense_slot_6">{{ errors.defense_slot_6 }}</span>
                                 </div>
@@ -271,6 +288,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.defense_slot_7">{{ errors.defense_slot_7 }}</span>
                                 </div>
@@ -285,6 +303,7 @@
                                         :options="filteredCharacters"
                                         :filter="fuzzySearchWithNicknames"
                                         style="background:white;"
+                                        :selectOnTab="true"
                                     ></v-select>
                                     <span class="form-error text-red-600" v-if="errors.defense_slot_8">{{ errors.defense_slot_8 }}</span>
                                 </div>

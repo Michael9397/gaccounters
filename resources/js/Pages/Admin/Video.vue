@@ -20,6 +20,7 @@
                                 :options="creators"
                                 :filter="fuzzySearch"
                                 style="background:white;"
+                                :selectOnTab="true"
                             ></v-select>
                             <span class="form-error text-red-600" v-if="errors.creator_id">{{ errors.creator_id }}</span>
                         </div>
