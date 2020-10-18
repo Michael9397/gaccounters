@@ -78,7 +78,7 @@
 import AppLayout from './../Layouts/AppLayout';
 import {fuzzySearchWithNicknames} from "../Helpers/fuzzysearch";
 import {getOffense, getDefense} from "../Helpers/getTeams";
-import {keyById, getVideoUrl, battleContainsCharacter} from "../Helpers/general"
+import {keyById, getVideoUrl} from "../Helpers/general"
 import {slots} from "../Helpers/slots"
 
 export default {

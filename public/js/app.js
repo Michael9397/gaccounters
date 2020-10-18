@@ -6022,6 +6022,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6064,6 +6068,271 @@ __webpack_require__.r(__webpack_exports__);
       this.form.character_id = this.selected_character;
       this.form.position_type = this.position_type;
       this.form.post('/search', {
+        preserveScroll: true,
+        resetOnSuccess: true
+      }).then(function () {
+        if (Object.keys(_this.errors).length == 0) {
+          _this.battleTitle = _this.battle_title;
+        }
+      });
+    }
+  },
+  computed: {
+    filteredCharacters: function filteredCharacters() {
+      if (this.battle_type == 'training') {
+        return this.characters;
+      }
+
+      if (this.battle_type == "ships") {
+        return this.characters.filter(function (character) {
+          return character.combat_type == "SHIP";
+        }).filter(function (character) {
+          return !character.category_id_list.includes('role_capital');
+        });
+      }
+
+      return this.characters.filter(function (character) {
+        return character.combat_type == "CHARACTER";
+      });
+    },
+    filteredLeaderCharacters: function filteredLeaderCharacters() {
+      if (this.battle_type == 'training') {
+        return this.characters;
+      }
+
+      if (this.battle_type == "ships") {
+        return this.characters.filter(function (character) {
+          return character.category_id_list.includes('role_capital');
+        });
+      }
+
+      return this.characters.filter(function (character) {
+        return character.combat_type == "CHARACTER";
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/SearchAdvanced.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/SearchAdvanced.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Helpers_fuzzysearch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Helpers/fuzzysearch */ "./resources/js/Helpers/fuzzysearch.js");
+/* harmony import */ var _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Helpers/getTeams */ "./resources/js/Helpers/getTeams.js");
+/* harmony import */ var _Helpers_general__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Helpers/general */ "./resources/js/Helpers/general.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['admin_links', 'errors', 'characters', 'battles', 'creators', 'videos', 'battle_title'],
+  components: {
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  name: 'SearchAdvanced',
+  data: function data() {
+    return {
+      form: this.$inertia.form({
+        battle_type: null,
+        search_parameters: null
+      }, {
+        bag: 'updateProfileInformation',
+        resetOnSuccess: false,
+        preserveScroll: true
+      }),
+      battleTitle: this.battle_title ? this.battle_title : 'Last 10 Battles Added',
+      position_type: 'defense',
+      offense_leader_character: null,
+      offense_character: null,
+      offense_excludes: null,
+      defense_leader_character: null,
+      defense_character: null,
+      defense_excludes: null,
+      battle_type: '5v5',
+      creatorsKeyed: Object(_Helpers_general__WEBPACK_IMPORTED_MODULE_3__["keyById"])(this.creators),
+      charactersKeyed: Object(_Helpers_general__WEBPACK_IMPORTED_MODULE_3__["keyById"])(this.characters),
+      videosKeyed: Object(_Helpers_general__WEBPACK_IMPORTED_MODULE_3__["keyById"])(this.videos),
+      fuzzySearchWithNicknames: _Helpers_fuzzysearch__WEBPACK_IMPORTED_MODULE_1__["fuzzySearchWithNicknames"],
+      getOffense: _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_2__["getOffense"],
+      getDefense: _Helpers_getTeams__WEBPACK_IMPORTED_MODULE_2__["getDefense"],
+      getCreator: _Helpers_general__WEBPACK_IMPORTED_MODULE_3__["getCreator"],
+      addTimeToVideo: _Helpers_general__WEBPACK_IMPORTED_MODULE_3__["addTimeToVideo"]
+    };
+  },
+  methods: {
+    search: function search() {
+      var _this = this;
+
+      this.form.battle_type = this.battle_type;
+      this.form.search_parameters = {
+        offense_leader_character: this.offense_leader_character,
+        offense_character: this.offense_character,
+        offense_excludes: this.offense_excludes,
+        defense_leader_character: this.defense_leader_character,
+        defense_character: this.defense_character,
+        defense_excludes: this.defense_excludes
+      };
+      this.form.post('/adv-search', {
         preserveScroll: true,
         resetOnSuccess: true
       }).then(function () {
@@ -6314,6 +6583,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "#simple-select[data-v-4026e891] {\n  margin:auto;\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr 1fr;\n  grid-gap: 10px;\n}\n@media only screen and (max-width: 800px) {\n#simple-select[data-v-4026e891] {\n    grid-template-columns: 1fr minmax(250px, 1fr);\n}\n.battle-table[data-v-4026e891] {\n    min-width: 100%;\n    display: grid;\n    grid-template-columns:  1fr 1fr 1fr;\n}\n}\n@media only screen and (max-width: 400px) {\n#simple-select[data-v-4026e891] {\n    grid-template-columns: 1fr;\n}\n}\n#battle-type-div[data-v-4026e891] {\n  display: grid;\n  justify-items: end;\n}\n#character-select-div[data-v-4026e891] {\n  display: grid;\n  justify-items: center;\n}\n#position-type-div[data-v-4026e891] {\n  display: grid;\n  justify-items: start;\n}\n#search-button-div[data-v-4026e891] {\n  display: grid;\n  justify-items: start;\n  margin-top: 24px;\n}\nselect[data-v-4026e891] {\n  padding: .87rem;\n}\nbutton[data-v-4026e891] {\n  padding: .8rem;\n}\n.battle-table[data-v-4026e891] {\n  display: grid;\n  grid-template-columns: 75px minmax(200px, 1fr) minmax(200px, 1fr) 175px 150px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "#simple-select[data-v-408fbad3] {\n  margin:auto;\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr 1fr;\n  grid-gap: 10px;\n}\n@media only screen and (max-width: 800px) {\n#simple-select[data-v-408fbad3] {\n    grid-template-columns: 1fr minmax(250px, 1fr);\n}\n.battle-table[data-v-408fbad3] {\n    min-width: 100%;\n    display: grid;\n    grid-template-columns:  1fr 1fr 1fr;\n}\n}\n@media only screen and (max-width: 400px) {\n#simple-select[data-v-408fbad3] {\n    grid-template-columns: 1fr;\n}\n}\n#battle-type-div[data-v-408fbad3] {\n  display: grid;\n  justify-items: end;\n}\n#character-select-div[data-v-408fbad3] {\n  display: grid;\n  justify-items: center;\n}\n#position-type-div[data-v-408fbad3] {\n  display: grid;\n  justify-items: start;\n}\n#search-button-div[data-v-408fbad3] {\n  display: grid;\n  justify-items: start;\n  margin-top: 24px;\n}\nselect[data-v-408fbad3] {\n  padding: .87rem;\n}\nbutton[data-v-408fbad3] {\n  padding: .8rem;\n}\n.battle-table[data-v-408fbad3] {\n  display: grid;\n  grid-template-columns: 75px minmax(200px, 1fr) minmax(200px, 1fr) 175px 150px;\n}\n", ""]);
 
 // exports
 
@@ -25935,6 +26223,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -33830,13 +34148,572 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { attrs: { id: "search-button-div" } }, [
-              _c("div", [
+              _c(
+                "div",
+                { staticClass: "flex justify-between w-full" },
+                [
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-blue", on: { click: _vm.search } },
+                    [_vm._v("SEARCH")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "inertia-link",
+                    {
+                      staticClass: "flex justify-end",
+                      attrs: { href: "/adv-search" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Advanced Search\n                            "
+                      ),
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "h-4 w-4 ml-2",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            stroke: "currentColor",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M9.26 13a2 2 0 0 1 .01-2.01A3 3 0 0 0 9 5H5a3 3 0 0 0 0 6h.08a6.06 6.06 0 0 0 0 2H5A5 5 0 0 1 5 3h4a5 5 0 0 1 .26 10zm1.48-6a2 2 0 0 1-.01 2.01A3 3 0 0 0 11 15h4a3 3 0 0 0 0-6h-.08a6.06 6.06 0 0 0 0-2H15a5 5 0 0 1 0 10h-4a5 5 0 0 1-.26-10z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "max-w-7xl mx-auto sm:px-6 lg:px-8 sm:py-12" },
+          [
+            _c("h2", { staticClass: "text-2xl" }, [
+              _vm._v(_vm._s(_vm.battleTitle))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "overflow-hidden battle-table font-extrabold text-center red-shadow"
+              },
+              [
+                _c("div", { staticClass: "px-4 py-2" }, [_vm._v("Score")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "px-4 py-2" }, [_vm._v("Offense")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "px-4 py-2" }, [_vm._v("Defense")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "px-4 py-2" }, [_vm._v("Details")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "px-4 py-2" }, [_vm._v("Notes")])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.battles, function(battle, i) {
+              return _c(
+                "div",
+                {
+                  staticClass: "overflow-hidden battle-table",
+                  class: i % 2 == 0 ? "bg-gray-100" : "bg-blue-100"
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "border border-gray-200 px-4 py-2 text-blue-800"
+                    },
+                    [
+                      _c("strong", [_vm._v(_vm._s(battle.score))]),
+                      _vm._v(" "),
+                      _vm.battle_type != "training" ? _c("br") : _vm._e(),
+                      _vm._v("in"),
+                      _c("br"),
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(battle.battle_type) +
+                          "\n                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "border border-gray-200 px-4 py-2",
+                    domProps: { innerHTML: _vm._s(_vm.getOffense(battle)) }
+                  }),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "border border-gray-200 px-4 py-2",
+                    domProps: { innerHTML: _vm._s(_vm.getDefense(battle)) }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "border border-gray-200 px-4 py-2" },
+                    [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: _vm.addTimeToVideo(battle),
+                            target: "_blank"
+                          }
+                        },
+                        [_vm._v("Link")]
+                      ),
+                      _vm._v(" @ " + _vm._s(battle.video_timestamp)),
+                      _c("br"),
+                      _vm._v(
+                        "\n                    By: " +
+                          _vm._s(_vm.getCreator(battle)) +
+                          "\n                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "border border-gray-200 px-4 py-2",
+                      staticStyle: { overflow: "auto" }
+                    },
+                    [_vm._v(_vm._s(battle.notes))]
+                  )
+                ]
+              )
+            })
+          ],
+          2
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/SearchAdvanced.vue?vue&type=template&id=408fbad3&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/SearchAdvanced.vue?vue&type=template&id=408fbad3&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "app-layout",
+    {
+      attrs: { admin_links: _vm.admin_links },
+      scopedSlots: _vm._u([
+        {
+          key: "header",
+          fn: function() {
+            return [_vm._v("Advanced Search")]
+          },
+          proxy: true
+        }
+      ])
+    },
+    [
+      _vm._v(" "),
+      _c("div", { staticClass: "py-4" }, [
+        _c("div", { staticClass: "max-w-7xl mx-auto sm:px-6 lg:px-8" }, [
+          _c("div", { attrs: { id: "simple-select" } }, [
+            _c("div", { attrs: { id: "battle-type-div" } }, [
+              _c("div", { staticClass: "w-full" }, [
+                _c("label", { attrs: { for: "battle-type" } }, [
+                  _vm._v("Battle Type")
+                ]),
+                _vm._v(" "),
                 _c(
-                  "button",
-                  { staticClass: "btn btn-blue", on: { click: _vm.search } },
-                  [_vm._v("SEARCH")]
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.battle_type,
+                        expression: "battle_type"
+                      }
+                    ],
+                    staticClass: "form-input w-full",
+                    attrs: { id: "battle-type" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.battle_type = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          _vm.selected_character = null
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "5v5" } }, [_vm._v("5v5")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "3v3" } }, [_vm._v("3v3")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "ships" } }, [
+                      _vm._v("Ships")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "training" } }, [
+                      _vm._v("No score videos")
+                    ])
+                  ]
                 )
               ])
+            ]),
+            _vm._v(" "),
+            _c("div", { attrs: { id: "character-select-div" } }, [
+              _c(
+                "div",
+                { staticClass: "w-full" },
+                [
+                  _vm.battle_type !== "ships"
+                    ? _c(
+                        "label",
+                        { attrs: { for: "offense-leader-character" } },
+                        [_vm._v("Offense Leader")]
+                      )
+                    : _c(
+                        "label",
+                        { attrs: { for: "offense-leader-character" } },
+                        [_vm._v("Select Capital Ship")]
+                      ),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    staticClass: "form-input",
+                    staticStyle: { background: "white" },
+                    attrs: {
+                      id: "offense-leader-character",
+                      label: "name",
+                      reduce: function(char) {
+                        return char.id
+                      },
+                      options: _vm.filteredLeaderCharacters,
+                      filter: _vm.fuzzySearchWithNicknames
+                    },
+                    model: {
+                      value: _vm.offense_leader_character,
+                      callback: function($$v) {
+                        _vm.offense_leader_character = $$v
+                      },
+                      expression: "offense_leader_character"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.selected_character
+                    ? _c("span", { staticClass: "error" }, [
+                        _vm._v(_vm._s(_vm.errors.selected_character[0]))
+                      ])
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "w-full" },
+                [
+                  _vm.battle_type !== "ships"
+                    ? _c("label", { attrs: { for: "offense-character" } }, [
+                        _vm._v("Offense Includes")
+                      ])
+                    : _c("label", { attrs: { for: "offense-character" } }, [
+                        _vm._v("Select Ship")
+                      ]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    staticClass: "form-input",
+                    staticStyle: { background: "white" },
+                    attrs: {
+                      id: "offense-character",
+                      label: "name",
+                      reduce: function(char) {
+                        return char.id
+                      },
+                      options: _vm.filteredLeaderCharacters,
+                      filter: _vm.fuzzySearchWithNicknames
+                    },
+                    model: {
+                      value: _vm.offense_character,
+                      callback: function($$v) {
+                        _vm.offense_character = $$v
+                      },
+                      expression: "offense_character"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.selected_character
+                    ? _c("span", { staticClass: "error" }, [
+                        _vm._v(_vm._s(_vm.errors.selected_character[0]))
+                      ])
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "w-full" },
+                [
+                  _vm.battle_type !== "ships"
+                    ? _c("label", { attrs: { for: "offense-excludes" } }, [
+                        _vm._v("Offense Excludes")
+                      ])
+                    : _c("label", { attrs: { for: "offense-character" } }, [
+                        _vm._v("Select Ship")
+                      ]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    staticClass: "form-input",
+                    staticStyle: { background: "white" },
+                    attrs: {
+                      id: "offense-excludes",
+                      label: "name",
+                      reduce: function(char) {
+                        return char.id
+                      },
+                      options: _vm.filteredLeaderCharacters,
+                      filter: _vm.fuzzySearchWithNicknames
+                    },
+                    model: {
+                      value: _vm.offense_excludes,
+                      callback: function($$v) {
+                        _vm.offense_excludes = $$v
+                      },
+                      expression: "offense_excludes"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.selected_character
+                    ? _c("span", { staticClass: "error" }, [
+                        _vm._v(_vm._s(_vm.errors.selected_character[0]))
+                      ])
+                    : _vm._e()
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { attrs: { id: "position-type-div" } }, [
+              _c(
+                "div",
+                { staticClass: "w-full" },
+                [
+                  _vm.battle_type !== "ships"
+                    ? _c(
+                        "label",
+                        { attrs: { for: "defense-leader-character" } },
+                        [_vm._v("Defense Leader")]
+                      )
+                    : _c(
+                        "label",
+                        { attrs: { for: "defense-leader-character" } },
+                        [_vm._v("Select Capital Ship")]
+                      ),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    staticClass: "form-input",
+                    staticStyle: { background: "white" },
+                    attrs: {
+                      id: "defense-leader-character",
+                      label: "name",
+                      reduce: function(char) {
+                        return char.id
+                      },
+                      options: _vm.filteredLeaderCharacters,
+                      filter: _vm.fuzzySearchWithNicknames
+                    },
+                    model: {
+                      value: _vm.defense_leader_character,
+                      callback: function($$v) {
+                        _vm.defense_leader_character = $$v
+                      },
+                      expression: "defense_leader_character"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.selected_character
+                    ? _c("span", { staticClass: "error" }, [
+                        _vm._v(_vm._s(_vm.errors.selected_character[0]))
+                      ])
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "w-full" },
+                [
+                  _vm.battle_type !== "ships"
+                    ? _c("label", { attrs: { for: "defense-character" } }, [
+                        _vm._v("Defense Includes")
+                      ])
+                    : _c("label", { attrs: { for: "defense-character" } }, [
+                        _vm._v("Select Ship")
+                      ]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    staticClass: "form-input",
+                    staticStyle: { background: "white" },
+                    attrs: {
+                      id: "defense-character",
+                      label: "name",
+                      reduce: function(char) {
+                        return char.id
+                      },
+                      options: _vm.filteredLeaderCharacters,
+                      filter: _vm.fuzzySearchWithNicknames
+                    },
+                    model: {
+                      value: _vm.defense_character,
+                      callback: function($$v) {
+                        _vm.defense_character = $$v
+                      },
+                      expression: "defense_character"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.selected_character
+                    ? _c("span", { staticClass: "error" }, [
+                        _vm._v(_vm._s(_vm.errors.selected_character[0]))
+                      ])
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "w-full" },
+                [
+                  _vm.battle_type !== "ships"
+                    ? _c("label", { attrs: { for: "defense-excludes" } }, [
+                        _vm._v("Defense Excludes")
+                      ])
+                    : _c("label", { attrs: { for: "defense-character" } }, [
+                        _vm._v("Select Ship")
+                      ]),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    staticClass: "form-input",
+                    staticStyle: { background: "white" },
+                    attrs: {
+                      id: "defense-excludes",
+                      label: "name",
+                      reduce: function(char) {
+                        return char.id
+                      },
+                      options: _vm.filteredLeaderCharacters,
+                      filter: _vm.fuzzySearchWithNicknames
+                    },
+                    model: {
+                      value: _vm.defense_excludes,
+                      callback: function($$v) {
+                        _vm.defense_excludes = $$v
+                      },
+                      expression: "defense_excludes"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.selected_character
+                    ? _c("span", { staticClass: "error" }, [
+                        _vm._v(_vm._s(_vm.errors.selected_character[0]))
+                      ])
+                    : _vm._e()
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { attrs: { id: "search-button-div" } }, [
+              _c(
+                "div",
+                { staticClass: "flex justify-between w-full" },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-blue",
+                      staticStyle: { "max-height": "2.5rem" },
+                      on: { click: _vm.search }
+                    },
+                    [_vm._v("SEARCH")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "inertia-link",
+                    {
+                      staticClass: "flex justify-end",
+                      attrs: { href: "/search" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Simple Search\n                            "
+                      ),
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "h-4 w-4 ml-2",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            stroke: "currentColor",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M9.26 13a2 2 0 0 1 .01-2.01A3 3 0 0 0 9 5H5a3 3 0 0 0 0 6h.08a6.06 6.06 0 0 0 0 2H5A5 5 0 0 1 5 3h4a5 5 0 0 1 .26 10zm1.48-6a2 2 0 0 1-.01 2.01A3 3 0 0 0 11 15h4a3 3 0 0 0 0-6h-.08a6.06 6.06 0 0 0 0-2H15a5 5 0 0 1 0 10h-4a5 5 0 0 1-.26-10z"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
             ])
           ])
         ]),
@@ -47972,7 +48849,9 @@ var map = {
 	"./Profile/UpdateProfileInformationForm": "./resources/js/Pages/Profile/UpdateProfileInformationForm.vue",
 	"./Profile/UpdateProfileInformationForm.vue": "./resources/js/Pages/Profile/UpdateProfileInformationForm.vue",
 	"./Search": "./resources/js/Pages/Search.vue",
-	"./Search.vue": "./resources/js/Pages/Search.vue"
+	"./Search.vue": "./resources/js/Pages/Search.vue",
+	"./SearchAdvanced": "./resources/js/Pages/SearchAdvanced.vue",
+	"./SearchAdvanced.vue": "./resources/js/Pages/SearchAdvanced.vue"
 };
 
 
@@ -49483,6 +50362,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Search_vue_vue_type_template_id_4026e891_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Search_vue_vue_type_template_id_4026e891_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/SearchAdvanced.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/SearchAdvanced.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SearchAdvanced_vue_vue_type_template_id_408fbad3_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchAdvanced.vue?vue&type=template&id=408fbad3&scoped=true& */ "./resources/js/Pages/SearchAdvanced.vue?vue&type=template&id=408fbad3&scoped=true&");
+/* harmony import */ var _SearchAdvanced_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchAdvanced.vue?vue&type=script&lang=js& */ "./resources/js/Pages/SearchAdvanced.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _SearchAdvanced_vue_vue_type_style_index_0_id_408fbad3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css& */ "./resources/js/Pages/SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _SearchAdvanced_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SearchAdvanced_vue_vue_type_template_id_408fbad3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SearchAdvanced_vue_vue_type_template_id_408fbad3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "408fbad3",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/SearchAdvanced.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/SearchAdvanced.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/SearchAdvanced.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchAdvanced.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/SearchAdvanced.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/Pages/SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css& ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_style_index_0_id_408fbad3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/SearchAdvanced.vue?vue&type=style&index=0&id=408fbad3&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_style_index_0_id_408fbad3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_style_index_0_id_408fbad3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_style_index_0_id_408fbad3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_style_index_0_id_408fbad3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_style_index_0_id_408fbad3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/SearchAdvanced.vue?vue&type=template&id=408fbad3&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/Pages/SearchAdvanced.vue?vue&type=template&id=408fbad3&scoped=true& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_template_id_408fbad3_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SearchAdvanced.vue?vue&type=template&id=408fbad3&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/SearchAdvanced.vue?vue&type=template&id=408fbad3&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_template_id_408fbad3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SearchAdvanced_vue_vue_type_template_id_408fbad3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

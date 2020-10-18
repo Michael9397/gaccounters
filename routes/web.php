@@ -26,6 +26,9 @@ Route::get('/creators/{creator}', [CreatorController::class, 'show'])->name('cre
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::post('/search', [SearchController::class, 'search'])->name('search.create');
+Route::get('/adv-search', [SearchController::class, 'advanceIndex'])->name('adv.search');
+Route::post('/adv-search', [SearchController::class, 'advanceSearch'])->name('adv.search.create');
+
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/history', [SearchController::class, 'history'])->name('search.history');
