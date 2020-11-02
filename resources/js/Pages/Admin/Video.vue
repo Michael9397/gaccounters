@@ -21,6 +21,7 @@
                                 :filter="fuzzySearch"
                                 style="background:white;"
                                 :selectOnTab="true"
+                                @input="filterVideosByCreator($event)"
                             ></v-select>
                             <span class="form-error text-red-600" v-if="errors.creator_id">{{ errors.creator_id }}</span>
                         </div>
@@ -49,7 +50,7 @@
                     <div class="px-4 py-2 hide-on-small">Title</div>
                     <div class="px-4 py-2">Edit/Delete</div>
                 </div>
-                <div class="overflow-hidden grid-table red-shadow" v-for="(video, i) in videos" :class="i % 2 == 0? `bg-gray-100`: `bg-blue-100`">
+                <div class="overflow-hidden grid-table red-shadow" v-for="(video, i) in filteredVideos" :class="i % 2 == 0? `bg-gray-100`: `bg-blue-100`">
                     <div class="border border-gray-200 px-4 py-2 text-blue-800">
                         <strong>{{ creatorsKeyed[video.creator_id].name }}</strong>
                     </div>
@@ -109,6 +110,7 @@ export default {
                 resetOnSuccess: false,
                 preserveScroll: true,
             }),
+            filteredVideos: this.videos,
             showFlash: false,
             flashMessage: '',
             mode: "Add",
@@ -117,7 +119,9 @@ export default {
         }
     },
     methods: {
-
+        filterVideosByCreator(creatorId) {
+            this.filteredVideos = this.videos.filter(video => creatorId == video.creator_id);
+        },
         edit(video) {
             this.form.id = video.id;
             this.form.creator_id = video.creator_id;
