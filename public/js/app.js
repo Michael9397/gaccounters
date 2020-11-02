@@ -4634,6 +4634,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -4657,6 +4658,7 @@ __webpack_require__.r(__webpack_exports__);
         resetOnSuccess: false,
         preserveScroll: true
       }),
+      filteredVideos: this.videos,
       showFlash: false,
       flashMessage: '',
       mode: "Add",
@@ -4667,6 +4669,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    filterVideosByCreator: function filterVideosByCreator(creatorId) {
+      this.filteredVideos = this.videos.filter(function (video) {
+        return creatorId == video.creator_id;
+      });
+    },
     edit: function edit(video) {
       this.form.id = video.id;
       this.form.creator_id = video.creator_id;
@@ -31827,6 +31834,11 @@ var render = function() {
                           filter: _vm.fuzzySearch,
                           selectOnTab: true
                         },
+                        on: {
+                          input: function($event) {
+                            return _vm.filterVideosByCreator($event)
+                          }
+                        },
                         model: {
                           value: _vm.form.creator_id,
                           callback: function($$v) {
@@ -31966,7 +31978,7 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _vm._l(_vm.videos, function(video, i) {
+            _vm._l(_vm.filteredVideos, function(video, i) {
               return _c(
                 "div",
                 {
