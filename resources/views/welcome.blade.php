@@ -166,12 +166,10 @@
                         <div class="border border-gray-200 px-4 py-2 text-center text-xl">
                             <a style="color:#290950;" href="/contentcreators/{{ $battleCounts[4]->id }}">{{ $battleCounts[4]->count }}</a>
                         </div>
-                        <div class="border border-gray-200 px-4 py-2 text-blue-800 text-xl">
-
-                        </div>
-                        <div class="border border-gray-200 px-4 py-2 text-center text-xl">
-
-                        </div>
+                        @if(!empty($searchCount))
+                            <div class="border border-gray-200 px-4 py-2 text-blue-800 text-xl">Total Searches</div>
+                            <div class="border border-gray-200 px-4 py-2 text-center text-xl">{{ $searchCount }}</div>
+                        @endif
                     </div>
                 </div>
             </div>

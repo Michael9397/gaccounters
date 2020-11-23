@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Battle;
+use App\Models\Search;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +44,7 @@ class StaticPageController extends Controller
             'defensiveLeaders' => $defensiveLeaders,
             'videoCount' => Video::all()->count(),
             'lastBattleUpdated' => Battle::orderBy('updated_at', 'desc')->first(),
+            'searchCount' => Search::all()->count(),
         ]);
     }
 
