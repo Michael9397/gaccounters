@@ -20,7 +20,7 @@ use Laracasts\Cypress\Controllers\CypressController;
 
 Route::get('/', [\App\Http\Controllers\StaticPageController::class, 'welcome'])->name('welcome');
 Route::get('/faq', [\App\Http\Controllers\StaticPageController::class, 'faq'])->name('faq');
-
+Route::get('/test', [\App\Http\Controllers\StaticPageController::class, 'test'])->name('test');
 Route::get('/creators', [CreatorController::class, 'index'])->name('creators');
 Route::get('/creators/{creator}', [CreatorController::class, 'show'])->name('creator');
 

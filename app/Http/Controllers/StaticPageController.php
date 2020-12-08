@@ -51,4 +51,8 @@ class StaticPageController extends Controller
     public function faq() {
         return Inertia::render('Faq');
     }
+
+    public function test() {
+        return view('test');
+    }
 }
